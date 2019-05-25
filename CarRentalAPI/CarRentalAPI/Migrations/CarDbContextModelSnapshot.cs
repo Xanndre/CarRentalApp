@@ -50,7 +50,7 @@ namespace CarRentalAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Client");
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("CarRentalAPI.Data.Model.Reservation", b =>
