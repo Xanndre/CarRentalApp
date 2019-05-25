@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarRentalAPI.Data.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalAPI.Services
 {
@@ -16,30 +17,46 @@ namespace CarRentalAPI.Services
             _carDbContext = carDbContext;
         }
 
-        public int Create(Reservation reservation)
+        public async Task<int> Create(Reservation reservation)
         {
-            _carDbContext.Reservations.Add(reservation);
-            _carDbContext.SaveChanges();
+            await _carDbContext.Reservations.AddAsync(reservation);
+            await _carDbContext.SaveChangesAsync();
             return reservation.Id;
         }
 
-        public List<Reservation> ReadAll()
+        public async Task<List<Reservation>> ReadAll()
         {
-            return _carDbContext.Reservations.ToList();
+            return await _carDbContext.Reservations.ToListAsync();
         }
 
-        public Reservation Read(int id)
+        public async Task<Reservation> Read(int id)
         {
-            return _carDbContext.Reservations.SingleOrDefault(reservation => reservation.Id == id);
+            return await _carDbContext.Reservations.SingleOrDefaultAsync(reservation => reservation.Id == id);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            Reservation reservation = Read(id);
+            Reservation reservation = await Read(id);
             if (reservation == null)
                 throw new ArgumentNullException("There's no reservation with such an id");
             _carDbContext.Reservations.Remove(reservation);
-            _carDbContext.SaveChanges();
+            await _carDbContext.SaveChangesAsync();
         }
+
+        public async Task Update(int id, Reservation reservation)
+        {
+            Reservation res = await Read(id);
+            if (res == null)
+                throw new ArgumentNullException("There's no reservation with such an id");
+            res.CarId = reservation.CarId;
+            res.PickUpLocation = reservation.PickUpLocation;
+            res.ReturnLocation = reservation.ReturnLocation;
+            res.PickUpDate = reservation.PickUpDate;
+            res.ReturnDate = reservation.ReturnDate;
+            await _carDbContext.SaveChangesAsync();
+
+        }
+
+        public async Task<List<Car>>
     }
 }

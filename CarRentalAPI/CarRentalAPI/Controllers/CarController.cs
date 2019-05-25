@@ -19,7 +19,7 @@ namespace CarRentalAPI.Controllers
         {
             _carService = carService;
         }
-        
+
         // GET: api/Car
         [HttpGet]
         public IEnumerable<Car> Get()
@@ -49,11 +49,12 @@ namespace CarRentalAPI.Controllers
             return Created("api/Car", id);
         }
 
-        // PUT: api/Car/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        //PUT: api/Car/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Car car)
+        {
+
+        }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
@@ -65,7 +66,7 @@ namespace CarRentalAPI.Controllers
             {
                 _carService.Delete(id);
             }
-            catch(ArgumentNullException exception)
+            catch (ArgumentNullException exception)
             {
                 return BadRequest(exception.Message);
             }

@@ -11,7 +11,6 @@ namespace CarRentalAPI.Data
     {
         public DbSet<Car> Cars { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<Client> Clients { get; set; }
 
         public CarDbContext(DbContextOptions options) : base(options)
         {

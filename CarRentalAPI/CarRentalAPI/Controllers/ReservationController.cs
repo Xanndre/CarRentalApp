@@ -22,18 +22,18 @@ namespace CarRentalAPI.Controllers
         
         // GET: api/Reservation
         [HttpGet]
-        public IEnumerable<Reservation> Get()
+        public async Task<IEnumerable<Reservation>> Get()
         {
-            return _reservationService.ReadAll();
+            return await _reservationService.ReadAll();
         }
 
         // GET: api/Reservation/5
         [HttpGet("{id}")]
-        public ActionResult<Reservation> Get(int id)
+        public async Task<ActionResult<Reservation>> Get(int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            Reservation reservation = _reservationService.Read(id);
+            Reservation reservation = await _reservationService.Read(id);
             if (reservation == null)
                 return BadRequest("There's no reservation with such an id");
             return Ok(reservation);
@@ -41,29 +41,41 @@ namespace CarRentalAPI.Controllers
 
         // POST: api/Reservation
         [HttpPost]
-        public IActionResult Post([FromBody] Reservation reservation)
+        public async Task<IActionResult> Post([FromBody] Reservation reservation)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            int id = _reservationService.Create(reservation);
+            int id = await _reservationService.Create(reservation);
             return Created("api/Reservation", id);
         }
 
-        // PUT: api/Reservation/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        //PUT: api/Reservation/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] Reservation reservation)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                _reservationService.Delete(id);
+                await _reservationService.Update(id, reservation);
+            }
+            catch (ArgumentNullException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+            return Ok("Successfully updated");
+        }
+
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            try
+            {
+                await _reservationService.Delete(id);
             }
             catch (ArgumentNullException exception)
             {
