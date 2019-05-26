@@ -1,1 +1,10 @@
 <app-navbar></app-navbar>
+<div class="main">
+  <app-home-page></app-home-page>
+  <div *ngFor="let item of cars">
+    <p>{{ item.id }}</p>
+    <p>{{ item.brand }}</p>
+    <p>{{ item.cost }}</p>
+    <p>{{ item.imageUrl }}</p>
+  </div>
+</div>
