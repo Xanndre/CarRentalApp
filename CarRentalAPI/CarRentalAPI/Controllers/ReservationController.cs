@@ -57,8 +57,15 @@ namespace CarRentalAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            int id = await _reservationService.Create(reservation);
-            return Created("api/Reservation", id);
+            try
+            {
+                int id = await _reservationService.Create(reservation);
+                return Created("api/Reservation", id);
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }   
         }
 
         //PUT: api/Reservation/5
@@ -72,6 +79,10 @@ namespace CarRentalAPI.Controllers
                 await _reservationService.Update(id, reservation);
             }
             catch (ArgumentNullException exception)
+            {
+                return BadRequest(exception.ParamName);
+            }
+            catch (ArgumentException exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -91,7 +102,7 @@ namespace CarRentalAPI.Controllers
             }
             catch (ArgumentNullException exception)
             {
-                return BadRequest(exception.Message);
+                return BadRequest(exception.ParamName);
             }
 
             return Ok("Successfully deleted");
