@@ -67,5 +67,10 @@ namespace CarRentalAPI.Services
             }
             return await _carDbContext.Cars.Except(unavailableCars).ToListAsync();
         }
+
+        public async Task<List<Car>> ReadAllCars()
+        {
+            return await _carDbContext.Cars.ToListAsync();
+        }
     }
 }

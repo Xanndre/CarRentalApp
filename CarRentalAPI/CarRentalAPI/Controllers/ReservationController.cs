@@ -39,6 +39,18 @@ namespace CarRentalAPI.Controllers
             return Ok(reservation);
         }
 
+        [HttpGet("Cars")]
+        public async Task<List<Car>> GetCars()
+        {
+            return await _reservationService.ReadAllCars();
+        }
+
+        [HttpGet("AvailableCars")]
+        public async Task<List<Car>> GetAvailableCars([FromQuery] DateTime pickUpDate, [FromQuery] DateTime returnDate)
+        {
+            return await _reservationService.GetAvailableCars(pickUpDate, returnDate);
+        }
+
         // POST: api/Reservation
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Reservation reservation)
