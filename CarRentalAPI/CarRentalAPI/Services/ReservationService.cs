@@ -57,6 +57,15 @@ namespace CarRentalAPI.Services
 
         }
 
-        //public async Task<List<Car>>
+        public async Task<List<Car>> GetAvailableCars(DateTime pickUpDate, DateTime returnDate)
+        {
+            List<Car> unavailableCars = new List<Car>();
+            foreach (Reservation reservation in _carDbContext.Reservations)
+            {
+                if(returnDate >= reservation.PickUpDate && pickUpDate <= reservation.ReturnDate)
+                    unavailableCars.Add(reservation.Car);
+            }
+            return await _carDbContext.Cars.Except(unavailableCars).ToListAsync();
+        }
     }
 }
