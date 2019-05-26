@@ -14,10 +14,8 @@ namespace CarRentalAPI.Data.Model
         public string ReturnLocation { get; set; }
         public DateTime PickUpDate { get; set; }
         public DateTime ReturnDate { get; set; }
-
-        public int ClientId { get; set; }
-        public Client Client { get; set; }
-
+        public string ClientLastName { get; set; }
+        public int ClientAge { get; set; }
         public int CarId { get; set; }
         public Car Car { get; set; }
     }
