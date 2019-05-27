@@ -1,16 +1,38 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
-import { AppRoutingModule } from "./app-routing.module";
+import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { HttpClientModule } from "@angular/common/http";
 import { CarService } from "./services/car.service";
+import { RentalFormComponent } from "./rental-form/rental-form.component";
+import { FormsModule } from "@angular/forms";
+import { CheckFormComponent } from "./check-form/check-form.component";
+import { AvailableCarsComponent } from "./available-cars/available-cars.component";
+
+const appRoutes: Routes = [
+  { path: "", component: HomePageComponent },
+  { path: "rentalForm", component: RentalFormComponent },
+  { path: "checkForm", component: CheckFormComponent },
+  { path: "availableCars", component: AvailableCarsComponent }
+];
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomePageComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomePageComponent,
+    RentalFormComponent,
+    CheckFormComponent,
+    AvailableCarsComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule
+  ],
   providers: [CarService],
   bootstrap: [AppComponent]
 })
