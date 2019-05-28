@@ -9,7 +9,7 @@ import { CarService } from "./services/car.service";
 import { RentalFormComponent } from "./rental-form/rental-form.component";
 import { FormsModule } from "@angular/forms";
 import { CheckFormComponent } from "./check-form/check-form.component";
-import { AvailableCarsComponent } from "./available-cars/available-cars.component";
+import { AvailableCarsComponent } from "./rental-form/available-cars/available-cars.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomePageComponent },

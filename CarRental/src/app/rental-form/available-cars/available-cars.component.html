@@ -1,0 +1,11 @@
+<p>
+  available-cars works!
+  {{ dates.pickUpDate }}
+</p>
+
+<div *ngFor="let item of availableCars">
+  <p>{{ item.id }}</p>
+  <p>{{ item.brand }}</p>
+  <p>{{ item.cost }}</p>
+  <p>{{ item.imageUrl }}</p>
+</div>

@@ -1,13 +1,15 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Input, Output } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { map } from "rxjs/Operators";
 import { Observable } from "rxjs";
 import { Car } from "../models/car";
-
+import { EventEmitter } from "@angular/core";
 @Injectable({
   providedIn: "root"
 })
 export class CarService {
+  //checkedAvailableCars = new EventEmitter<Date[]>();
+
   constructor(private client: HttpClient) {}
 
   getAllCars(): Observable<Car[]> {
@@ -18,13 +20,16 @@ export class CarService {
     );
   }
 
-  getAvailableCars(pickUpDate: Date, returnDate: Date): Observable<Car[]> {
-    let params = new HttpParams()
-      .set("pickUpDate", pickUpDate.toString())
-      .set("returnDate", returnDate.toString());
+  checkAvailableCars(pickUpDate: Date, returnDate: Date): Observable<Car[]> {
+    console.log(pickUpDate.toUTCString());
+    console.log(returnDate.toUTCString());
+    console.log(new Date().toUTCString());
+    const httpParams = new HttpParams()
+      .set("pickUpDate", pickUpDate.toUTCString())
+      .set("returnDate", returnDate.toUTCString());
     return this.client
       .get("https://localhost:44377/api/Reservation/AvailableCars", {
-        params: params
+        params: httpParams
       })
       .pipe(
         map((res: Car[]) => {
