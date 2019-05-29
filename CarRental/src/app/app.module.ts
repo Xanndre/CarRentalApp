@@ -10,12 +10,13 @@ import { RentalFormComponent } from "./rental-form/rental-form.component";
 import { FormsModule } from "@angular/forms";
 import { CheckFormComponent } from "./check-form/check-form.component";
 import { AvailableCarsComponent } from "./rental-form/available-cars/available-cars.component";
+import { ReservationOverviewComponent } from "./reservation-overview/reservation-overview.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomePageComponent },
   { path: "rentalForm", component: RentalFormComponent },
   { path: "checkForm", component: CheckFormComponent },
-  { path: "availableCars", component: AvailableCarsComponent }
+  { path: "overview", component: ReservationOverviewComponent }
 ];
 
 @NgModule({
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     HomePageComponent,
     RentalFormComponent,
     CheckFormComponent,
-    AvailableCarsComponent
+    AvailableCarsComponent,
+    ReservationOverviewComponent
   ],
   imports: [
     BrowserModule,

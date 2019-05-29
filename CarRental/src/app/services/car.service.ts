@@ -21,9 +21,6 @@ export class CarService {
   }
 
   checkAvailableCars(pickUpDate: Date, returnDate: Date): Observable<Car[]> {
-    console.log(pickUpDate.toUTCString());
-    console.log(returnDate.toUTCString());
-    console.log(new Date().toUTCString());
     const httpParams = new HttpParams()
       .set("pickUpDate", pickUpDate.toUTCString())
       .set("returnDate", returnDate.toUTCString());

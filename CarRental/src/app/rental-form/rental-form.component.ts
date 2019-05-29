@@ -1,8 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
-import { CarService } from "../services/car.service";
-import { Reservation } from "../models/reservation";
 import { Car } from "../models/car";
 
 @Component({
@@ -11,20 +9,18 @@ import { Car } from "../models/car";
   styleUrls: ["./rental-form.component.css"]
 })
 export class RentalFormComponent implements OnInit {
-  private carService: CarService;
-
-  dates = {
-    pickUpDate: new Date(),
-    returnDate: new Date()
-  };
-
   @ViewChild("f") rentalForm: NgForm;
 
   reservation = {
+    id: 0,
     pickUpLocation: "",
     returnLocation: "",
+    pickUpDate: new Date(),
+    returnDate: new Date(),
     clientLastName: "",
-    clientAge: 0
+    clientAge: 0,
+    carId: 0,
+    car: new Car()
   };
 
   constructor(private router: Router) {}
@@ -32,13 +28,14 @@ export class RentalFormComponent implements OnInit {
   ngOnInit() {}
 
   onCheckAvailableCars() {
-    //this.router.navigateByUrl("/availableCars");
-    this.reservation.clientAge = this.rentalForm.value.clientAge;
-    this.reservation.clientLastName = this.rentalForm.value.clientLastName;
-    this.reservation.pickUpLocation = this.rentalForm.value.pickUpLocation;
-    this.reservation.returnLocation = this.rentalForm.value.returnLocation;
-
-    this.dates = {
+    this.reservation = {
+      clientAge: this.rentalForm.value.clientAge,
+      clientLastName: this.rentalForm.value.clientLastName,
+      pickUpLocation: this.rentalForm.value.pickUpLocation,
+      returnLocation: this.rentalForm.value.returnLocation,
+      id: 0,
+      carId: 0,
+      car: new Car(),
       pickUpDate: new Date(this.rentalForm.value.pickUpDate),
       returnDate: new Date(this.rentalForm.value.returnDate)
     };

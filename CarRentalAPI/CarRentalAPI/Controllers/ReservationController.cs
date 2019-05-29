@@ -53,14 +53,14 @@ namespace CarRentalAPI.Controllers
 
         // POST: api/Reservation
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Reservation reservation)
+        public async Task<ActionResult<Reservation>> Post([FromBody] Reservation reservation)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                int id = await _reservationService.Create(reservation);
-                return Created("api/Reservation", id);
+                Reservation res = await _reservationService.Create(reservation);
+                return CreatedAtAction(nameof(Get), res.Id, res);
             }
             catch (ArgumentException exception)
             {

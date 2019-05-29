@@ -46,7 +46,6 @@
           <div class="form-group">
             <label for="pickUpDate">Pick Up Date</label>
             <input
-              [ngModel]="dates.pickUpDate"
               type="datetime-local"
               id="pickUpDate"
               class="form-control"
@@ -57,7 +56,6 @@
           <div class="form-group">
             <label for="returnDate">Return Date</label>
             <input
-              [ngModel]="dates.returnDate"
               type="datetime-local"
               id="returnDate"
               class="form-control"
@@ -76,7 +74,7 @@
     </div>
 
     <div class="col-lg-6">
-      <app-available-cars [dates]="dates"></app-available-cars>
+      <app-available-cars [reservation]="reservation"></app-available-cars>
     </div>
   </div>
 </div>

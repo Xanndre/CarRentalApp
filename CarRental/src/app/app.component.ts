@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private carService: CarService) {
     this.carService.getAllCars().subscribe((res: Car[]) => {
       this.cars = res;
-      console.log(this.cars);
+      //console.log(this.cars);
     });
   }
 }

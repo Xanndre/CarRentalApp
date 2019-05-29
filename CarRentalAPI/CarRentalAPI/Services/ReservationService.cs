@@ -18,13 +18,13 @@ namespace CarRentalAPI.Services
             _carDbContext = carDbContext;
         }
 
-        public async Task<int> Create(Reservation reservation)
+        public async Task<Reservation> Create(Reservation reservation)
         {
             if ((await GetAvailableCars(reservation.PickUpDate, reservation.ReturnDate)).All(car => car.Id != reservation.CarId))
                 throw new ArgumentException("This car isn't available at this time");
             await _carDbContext.Reservations.AddAsync(reservation);
             await _carDbContext.SaveChangesAsync();
-            return reservation.Id;
+            return reservation;
         }
 
         public async Task<List<Reservation>> ReadAll()
