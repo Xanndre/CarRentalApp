@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Reservation } from "../models/reservation";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/Operators";
 import { DataPassService } from "./data-pass.service";
@@ -19,9 +19,12 @@ export class ReservationService {
     );
   }
 
-  getReservation(id: number) {
+  getReservation(id: number, name: string) {
+    const httpParams = new HttpParams()
+      .set("id", id.toString())
+      .set("name", name);
     return this.client
-      .get("https://localhost:44377/api/Reservation/" + id)
+      .get("https://localhost:44377/api/Reservation", { params: httpParams })
       .pipe(
         map((res: Reservation) => {
           return res;
@@ -42,20 +45,29 @@ export class ReservationService {
     );
   }
 
-  updateReservation(id: number, reservation: Reservation) {
+  updateReservation(id: number, reservation: Reservation, name: string) {
+    const httpParams = new HttpParams()
+      .set("id", id.toString())
+      .set("name", name);
     const options = {
+      params: httpParams,
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
     };
     return this.client.put(
-      "https://localhost:44377/api/Reservation/" + id,
+      "https://localhost:44377/api/Reservation/",
       reservation,
       options
     );
   }
 
-  deleteReservation(id: number) {
-    return this.client.delete("https://localhost:44377/api/Reservation/" + id);
+  deleteReservation(id: number, name: string) {
+    const httpParams = new HttpParams()
+      .set("id", id.toString())
+      .set("name", name);
+    return this.client.delete("https://localhost:44377/api/Reservation/", {
+      params: httpParams
+    });
   }
 }

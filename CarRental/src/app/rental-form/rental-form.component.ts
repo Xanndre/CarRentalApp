@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Input } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { Car } from "../models/car";

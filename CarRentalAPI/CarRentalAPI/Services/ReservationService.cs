@@ -32,23 +32,24 @@ namespace CarRentalAPI.Services
             return await _carDbContext.Reservations.Include(r=>r.Car).ToListAsync();
         }
 
-        public async Task<Reservation> Read(int id)
+        public async Task<Reservation> Read(int id, string name)
         {
-            return await _carDbContext.Reservations.Include(r=>r.Car).SingleOrDefaultAsync(reservation => reservation.Id == id);
+            return await _carDbContext.Reservations.Include(r=>r.Car).SingleOrDefaultAsync(reservation => reservation.Id == id
+                                                                                                          && reservation.ClientLastName==name);
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id, string name)
         {
-            Reservation reservation = await Read(id);
+            Reservation reservation = await Read(id, name);
             if (reservation == null)
                 throw new ArgumentNullException("There's no reservation with such an id");
             _carDbContext.Reservations.Remove(reservation);
             await _carDbContext.SaveChangesAsync();
         }
 
-        public async Task Update(int id, Reservation reservation)
+        public async Task Update(int id, Reservation reservation, string name)
         {
-            Reservation res = await Read(id);
+            Reservation res = await Read(id, name);
             if (res == null)
                 throw new ArgumentNullException("There's no reservation with such an id");
 
