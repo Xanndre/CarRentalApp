@@ -1,3 +1,11 @@
 <p>
   {{ reservation.id }}
 </p>
+<button class=" btn btn-secondary btn-lg" (click)="onUpdated()">
+  Update
+</button>
+<button class=" btn btn-secondary btn-lg" (click)="onDeleted()">
+  Delete
+</button>
+
+<router-outlet></router-outlet>

@@ -66,8 +66,14 @@ export class ReservationService {
     const httpParams = new HttpParams()
       .set("id", id.toString())
       .set("name", name);
-    return this.client.delete("https://localhost:44377/api/Reservation/", {
-      params: httpParams
-    });
+    return this.client
+      .delete("https://localhost:44377/api/Reservation/", {
+        params: httpParams
+      })
+      .pipe(
+        map((res: Reservation) => {
+          return res;
+        })
+      );
   }
 }

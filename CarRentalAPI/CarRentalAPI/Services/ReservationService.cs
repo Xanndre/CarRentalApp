@@ -42,7 +42,7 @@ namespace CarRentalAPI.Services
         {
             Reservation reservation = await Read(id, name);
             if (reservation == null)
-                throw new ArgumentNullException("There's no reservation with such an id");
+                throw new ArgumentNullException("There's no reservation with such an id and last name");
             _carDbContext.Reservations.Remove(reservation);
             await _carDbContext.SaveChangesAsync();
         }
@@ -51,7 +51,7 @@ namespace CarRentalAPI.Services
         {
             Reservation res = await Read(id, name);
             if (res == null)
-                throw new ArgumentNullException("There's no reservation with such an id");
+                throw new ArgumentNullException("There's no reservation with such an id and last name");
 
             if ((await GetAvailableCars(reservation.PickUpDate, reservation.ReturnDate, id)).All(car => car.Id != reservation.CarId))
                 throw new ArgumentException("This car isn't available at this time");
