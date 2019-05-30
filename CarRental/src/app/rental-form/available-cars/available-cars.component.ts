@@ -35,24 +35,55 @@ export class AvailableCarsComponent implements OnInit {
   ngOnInit() {}
 
   ngOnChanges() {
-    this.carService
-      .checkAvailableCars(
-        this.reservation.pickUpDate,
-        this.reservation.returnDate
-      )
-      .subscribe((res: Car[]) => {
-        this.availableCars = res;
-        console.log(this.availableCars);
-      });
+    if (this.dataPassService.getUpdated()) {
+      this.reservation.id = this.dataPassService.getUpdatedReservation().id;
+      console.log(this.dataPassService.getUpdatedReservation().id);
+      console.log(this.reservation.id);
+      this.carService
+        .checkUpdatedAvailableCars(
+          this.reservation.pickUpDate,
+          this.reservation.returnDate,
+          this.dataPassService.getUpdatedReservation().id
+        )
+        .subscribe((res: Car[]) => {
+          this.availableCars = res;
+          console.log(this.availableCars);
+        });
+    } else {
+      this.carService
+        .checkAvailableCars(
+          this.reservation.pickUpDate,
+          this.reservation.returnDate
+        )
+        .subscribe((res: Car[]) => {
+          this.availableCars = res;
+          //console.log(this.availableCars);
+        });
+    }
   }
 
   onClicked(carId: number) {
-    this.reservation.carId = carId;
-    this.reservationService
-      .createReservation(this.reservation)
-      .subscribe(res => {
-        this.dataPassService.setReservation(res);
-        this.router.navigateByUrl("/overview");
-      });
+    if (this.dataPassService.getUpdated()) {
+      this.reservation.carId = carId;
+
+      this.reservationService
+        .updateReservation(
+          this.dataPassService.getUpdatedReservation().id,
+          this.reservation,
+          this.dataPassService.getUpdatedReservation().clientLastName
+        )
+        .subscribe(res => {
+          this.dataPassService.setReservation(res);
+          this.router.navigateByUrl("/overview");
+        });
+    } else {
+      this.reservation.carId = carId;
+      this.reservationService
+        .createReservation(this.reservation)
+        .subscribe(res => {
+          this.dataPassService.setReservation(res);
+          this.router.navigateByUrl("/overview");
+        });
+    }
   }
 }

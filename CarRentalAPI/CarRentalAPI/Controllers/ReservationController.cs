@@ -46,9 +46,9 @@ namespace CarRentalAPI.Controllers
         }
 
         [HttpGet("AvailableCars")]
-        public async Task<List<Car>> GetAvailableCars([FromQuery] DateTime pickUpDate, [FromQuery] DateTime returnDate)
+        public async Task<List<Car>> GetAvailableCars([FromQuery] DateTime pickUpDate, [FromQuery] DateTime returnDate, [FromQuery] int? id=null)
         {
-            return await _reservationService.GetAvailableCars(pickUpDate, returnDate);
+            return await _reservationService.GetAvailableCars(pickUpDate, returnDate, id);
         }
 
         // POST: api/Reservation
@@ -87,7 +87,7 @@ namespace CarRentalAPI.Controllers
                 return BadRequest(exception.Message);
             }
 
-            return Ok("Successfully updated");
+            return Ok();
         }
 
         // DELETE: api/ApiWithActions/5
@@ -105,7 +105,7 @@ namespace CarRentalAPI.Controllers
                 return BadRequest(exception.ParamName);
             }
 
-            return Ok("Successfully deleted");
+            return Ok();
         }
     }
 }

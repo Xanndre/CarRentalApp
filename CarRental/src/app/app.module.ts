@@ -16,7 +16,11 @@ const appRoutes: Routes = [
   { path: "", component: HomePageComponent },
   { path: "rentalForm", component: RentalFormComponent },
   { path: "checkForm", component: CheckFormComponent },
-  { path: "overview", component: ReservationOverviewComponent }
+  {
+    path: "overview",
+    component: ReservationOverviewComponent,
+    children: [{ path: "update", component: RentalFormComponent }]
+  }
 ];
 
 @NgModule({

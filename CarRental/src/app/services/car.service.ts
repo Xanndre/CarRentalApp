@@ -34,4 +34,24 @@ export class CarService {
         })
       );
   }
+
+  checkUpdatedAvailableCars(
+    pickUpDate: Date,
+    returnDate: Date,
+    id: number
+  ): Observable<Car[]> {
+    const httpParams = new HttpParams()
+      .set("pickUpDate", pickUpDate.toUTCString())
+      .set("returnDate", returnDate.toUTCString())
+      .set("id", id.toString());
+    return this.client
+      .get("https://localhost:44377/api/Reservation/AvailableCars", {
+        params: httpParams
+      })
+      .pipe(
+        map((res: Car[]) => {
+          return res;
+        })
+      );
+  }
 }

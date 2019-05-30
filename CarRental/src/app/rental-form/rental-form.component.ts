@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { Car } from "../models/car";
+import { DataPassService } from "../services/data-pass.service";
 
 @Component({
   selector: "app-rental-form",
@@ -10,6 +11,8 @@ import { Car } from "../models/car";
 })
 export class RentalFormComponent implements OnInit {
   @ViewChild("f") rentalForm: NgForm;
+
+  updated = false;
 
   reservation = {
     id: 0,
@@ -23,21 +26,40 @@ export class RentalFormComponent implements OnInit {
     car: new Car()
   };
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private dataPassService: DataPassService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.updated = this.dataPassService.getUpdated();
+  }
 
   onCheckAvailableCars() {
-    this.reservation = {
-      clientAge: this.rentalForm.value.clientAge,
-      clientLastName: this.rentalForm.value.clientLastName,
-      pickUpLocation: this.rentalForm.value.pickUpLocation,
-      returnLocation: this.rentalForm.value.returnLocation,
-      id: 0,
-      carId: 0,
-      car: new Car(),
-      pickUpDate: new Date(this.rentalForm.value.pickUpDate),
-      returnDate: new Date(this.rentalForm.value.returnDate)
-    };
+    if (!this.updated) {
+      this.reservation = {
+        clientAge: this.rentalForm.value.clientAge,
+        clientLastName: this.rentalForm.value.clientLastName,
+        pickUpLocation: this.rentalForm.value.pickUpLocation,
+        returnLocation: this.rentalForm.value.returnLocation,
+        id: 0,
+        carId: 0,
+        car: new Car(),
+        pickUpDate: new Date(this.rentalForm.value.pickUpDate),
+        returnDate: new Date(this.rentalForm.value.returnDate)
+      };
+    } else {
+      this.reservation = {
+        clientAge: 0,
+        clientLastName: "",
+        pickUpLocation: this.rentalForm.value.pickUpLocation,
+        returnLocation: this.rentalForm.value.returnLocation,
+        id: 0,
+        carId: 0,
+        car: new Car(),
+        pickUpDate: new Date(this.rentalForm.value.pickUpDate),
+        returnDate: new Date(this.rentalForm.value.returnDate)
+      };
+    }
   }
 }

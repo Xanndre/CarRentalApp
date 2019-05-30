@@ -55,11 +55,13 @@ export class ReservationService {
         "Content-Type": "application/json"
       })
     };
-    return this.client.put(
-      "https://localhost:44377/api/Reservation/",
-      reservation,
-      options
-    );
+    return this.client
+      .put("https://localhost:44377/api/Reservation/", reservation, options)
+      .pipe(
+        map((res: Reservation) => {
+          return res;
+        })
+      );
   }
 
   deleteReservation(id: number, name: string) {

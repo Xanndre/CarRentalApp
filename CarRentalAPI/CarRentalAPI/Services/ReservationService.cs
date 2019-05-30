@@ -60,6 +60,8 @@ namespace CarRentalAPI.Services
             res.ReturnLocation = reservation.ReturnLocation;
             res.PickUpDate = reservation.PickUpDate;
             res.ReturnDate = reservation.ReturnDate;
+            res.CarId = reservation.CarId;
+            res.Car = reservation.Car;
             await _carDbContext.SaveChangesAsync();
 
         }

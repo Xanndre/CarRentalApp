@@ -6,6 +6,8 @@ import { Reservation } from "../models/reservation";
 })
 export class DataPassService {
   private reservation: Reservation;
+  private updated: boolean;
+  private updatedReservation: Reservation;
 
   constructor() {}
 
@@ -15,5 +17,21 @@ export class DataPassService {
 
   setReservation(reservation: Reservation) {
     this.reservation = reservation;
+  }
+
+  getUpdatedReservation(): Reservation {
+    return this.updatedReservation;
+  }
+
+  setUpdatedReservation(updatedReservation: Reservation) {
+    this.updatedReservation = updatedReservation;
+  }
+
+  getUpdated(): boolean {
+    return this.updated;
+  }
+
+  setUpdated(updated: boolean) {
+    this.updated = updated;
   }
 }
