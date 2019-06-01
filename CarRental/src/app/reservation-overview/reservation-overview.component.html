@@ -1,31 +1,53 @@
-<p>Your current reservation:</p>
-<p>ID: + {{ reservation.id }}</p>
-<p>
-  {{ calculateTotalCost(reservation) }}
-</p>
-<button class=" btn btn-secondary btn-lg" (click)="onUpdated()">
-  Update
-</button>
-<button class=" btn btn-secondary btn-lg" (click)="onDeleted()">
-  Delete
-</button>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" style="margin-top: 150px">
+      <div class="list-group-item clearfix" *ngFor="let car of cars | slice: 1">
+        <div class="float-left">
+          <h4 class="list-group-item-heading text-secondary">
+            {{ car.brand }}
+          </h4>
+          <p class="list-group-item-text text-secondary">
+            Reservation ID: {{ reservation.id }}
+          </p>
+          <p class="list-group-item-text text-secondary">
+            Price per hour: {{ car.cost }}$
+          </p>
+
+          <p class="list-group-item-text text-secondary">
+            Total cost: {{ calculateTotalCost(reservation) }}$
+          </p>
+          <p class="list-group-item-text text-secondary">
+            {{ car.description }}
+          </p>
+        </div>
+        <span class="float-right">
+          <img
+            src="{{ car.imageUrl }}"
+            alt="{{ car.brand }}"
+            class="img-responsive"
+            style="width:341.5px;height:192px;"
+          />
+          <br />
+          <button
+            class=" btn btn-secondary btn-lg"
+            style="margin-top: 5px; margin-right:2px; width:168.75px"
+            (click)="onUpdated()"
+          >
+            Update
+          </button>
+          <button
+            class=" btn btn-secondary btn-lg"
+            style="margin-top: 5px; margin-left:2px; width:168.75px"
+            (click)="onDeleted()"
+          >
+            Delete
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
-<div class="list-group-item clearfix" *ngFor="let car of cars | slice: 1">
-  <div class="float-left">
-    <h4 class="list-group-item-heading text-secondary">{{ car.brand }}</h4>
-    <p class="list-group-item-text text-secondary">
-      Price per hour: {{ car.cost }}$
-    </p>
-    <p class="list-group-item-text text-secondary">{{ car.description }}</p>
-  </div>
-  <span class="float-right">
-    <img
-      src="{{ car.imageUrl }}"
-      alt="{{ car.brand }}"
-      class="img-responsive"
-      style="width:341.5px;height:192px;"
-    />
-    <br />
-  </span>
-</div>
