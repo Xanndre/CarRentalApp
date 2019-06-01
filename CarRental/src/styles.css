@@ -5,7 +5,8 @@ html {
 }
 body {
   min-height: 100%;
-  background-image: url("https://images.alphacoders.com/447/447708.jpg");
+  background-color: lightgray;
+  /* background-image: url("https://images.alphacoders.com/447/447708.jpg"); */
   background-size: 100%;
   background-attachment: fixed;
 }
