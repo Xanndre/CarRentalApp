@@ -1,27 +1,39 @@
-<form (ngSubmit)="onChecked()" #f="ngForm">
-  <div id="clientData">
-    <div class="form-group">
-      <label for="clientLastName">Last Name</label>
-      <input
-        type="text"
-        id="clientLastName"
-        class="form-control"
-        ngModel
-        name="clientLastName"
-      />
+<div class="container" style="padding: 140px 0">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <form (ngSubmit)="onChecked()" #f="ngForm">
+        <div id="clientData">
+          <div class="form-group">
+            <label class="text-secondary" for="clientLastName">Last Name</label>
+            <input
+              type="text"
+              id="clientLastName"
+              class="form-control"
+              ngModel
+              name="clientLastName"
+            />
+          </div>
+          <div class="form-group">
+            <label class="text-secondary" for="reservationId"
+              >Reservation ID</label
+            >
+            <input
+              type="text"
+              id="reservationId"
+              class="form-control"
+              ngModel
+              name="reservationId"
+            />
+          </div>
+        </div>
+        <div class="text-secondary text-center">
+          <button class="btn btn-secondary btn-lg" type="submit">
+            Check
+          </button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="reservationId">Reservation ID</label>
-      <input
-        type="text"
-        id="reservationId"
-        class="form-control"
-        ngModel
-        name="reservationId"
-      />
-    </div>
+    <div class="col-lg-4"></div>
   </div>
-  <button class="btn btn-secondary" type="submit">
-    Check
-  </button>
-</form>
+</div>

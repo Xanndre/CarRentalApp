@@ -1,13 +1,40 @@
-<div *ngFor="let item of availableCars">
+<!-- <div *ngFor="let item of availableCars">
   <p>{{ item.id }}</p>
   <p>{{ item.brand }}</p>
   <p>{{ item.cost }}</p>
   <p>{{ item.description }}</p>
-  <p>{{ item.imageUrl }}</p>
+  <img
+    src="{{ item.imageUrl }}"
+    style="width:341.5px;height:192px;"
+    alt="Car1"
+  />
+
   <button
     class=" btn btn-secondary btn-lg"
     type="submit"
     (click)="onClicked(item.id)"
+  >
+    Rent
+  </button>
+</div> -->
+
+<div class="list-group-item clearfix" *ngFor="let car of availableCars">
+  <div class="float-left">
+    <h4 class="list-group-item-heading">{{ car.id }}</h4>
+    <p class="list-group-item-text">{{ car.description }}</p>
+  </div>
+  <span class="float-right">
+    <img
+      src="{{ car.imageUrl }}"
+      alt="{{ car.brand }}"
+      class="img-responsive"
+      style="width:341.5px;height:192px;"
+    />
+  </span>
+  <button
+    class=" btn btn-secondary btn-lg"
+    type="submit"
+    (click)="onClicked(car.id)"
   >
     Rent
   </button>
