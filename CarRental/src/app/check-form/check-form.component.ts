@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { DataPassService } from "../services/data-pass.service";
 import { ReservationService } from "../services/reservation.service";
 import { NgForm } from "@angular/forms";
+import { HttpErrorResponse } from "@angular/common/http";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-check-form",
@@ -15,7 +17,8 @@ export class CheckFormComponent implements OnInit {
   constructor(
     private router: Router,
     private dataPassService: DataPassService,
-    private reservationService: ReservationService
+    private reservationService: ReservationService,
+    private modal: NgbModal
   ) {}
 
   formData: {
@@ -23,9 +26,14 @@ export class CheckFormComponent implements OnInit {
     reservationId: number;
   };
 
+  modalWindow: {
+    title: string;
+    body: string;
+  };
+
   ngOnInit() {}
 
-  onChecked() {
+  onChecked(content) {
     this.formData = {
       clientLastName: this.checkForm.value.clientLastName,
       reservationId: this.checkForm.value.reservationId
@@ -33,9 +41,20 @@ export class CheckFormComponent implements OnInit {
 
     this.reservationService
       .getReservation(this.formData.reservationId, this.formData.clientLastName)
-      .subscribe(res => {
-        this.dataPassService.setReservation(res);
-        this.router.navigateByUrl("/overview");
-      });
+      .subscribe(
+        res => {
+          this.dataPassService.setReservation(res);
+          this.router.navigateByUrl("/overview");
+        },
+        (error: HttpErrorResponse) => {
+          if (error.status == 400) {
+            this.modalWindow = {
+              title: "Error",
+              body: "There is no reservation with such an ID and last name!"
+            };
+            this.modal.open(content);
+          }
+        }
+      );
   }
 }

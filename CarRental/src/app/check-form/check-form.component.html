@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
-      <form (ngSubmit)="onChecked()" #f="ngForm">
+      <form (ngSubmit)="onChecked(content)" #f="ngForm">
         <div id="clientData">
           <div class="form-group">
             <label class="text-secondary" for="clientLastName">Last Name</label>
@@ -37,3 +37,17 @@
     <div class="col-lg-4"></div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header text-secondary">
+    <h4 class="modal-title" id="modalTitle">{{ modalWindow.title }}</h4>
+  </div>
+  <div class="modal-body text-secondary">
+    <p>{{ modalWindow.body }}</p>
+  </div>
+  <div class="modal-footer text-secondary text-center">
+    <button class="btn btn-secondary btn-lg" (click)="modal.close()">
+      Close
+    </button>
+  </div>
+</ng-template>

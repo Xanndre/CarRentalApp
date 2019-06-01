@@ -11,6 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { CheckFormComponent } from "./check-form/check-form.component";
 import { AvailableCarsComponent } from "./rental-form/available-cars/available-cars.component";
 import { ReservationOverviewComponent } from "./reservation-overview/reservation-overview.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 const appRoutes: Routes = [
   { path: "", component: HomePageComponent },
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [CarService],
   bootstrap: [AppComponent]
