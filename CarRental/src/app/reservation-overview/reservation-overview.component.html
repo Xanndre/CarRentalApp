@@ -11,3 +11,21 @@
 </button>
 
 <router-outlet></router-outlet>
+<div class="list-group-item clearfix" *ngFor="let car of cars | slice: 1">
+  <div class="float-left">
+    <h4 class="list-group-item-heading text-secondary">{{ car.brand }}</h4>
+    <p class="list-group-item-text text-secondary">
+      Price per hour: {{ car.cost }}$
+    </p>
+    <p class="list-group-item-text text-secondary">{{ car.description }}</p>
+  </div>
+  <span class="float-right">
+    <img
+      src="{{ car.imageUrl }}"
+      alt="{{ car.brand }}"
+      class="img-responsive"
+      style="width:341.5px;height:192px;"
+    />
+    <br />
+  </span>
+</div>

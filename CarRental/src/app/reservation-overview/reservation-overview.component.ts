@@ -3,6 +3,7 @@ import { DataPassService } from "../services/data-pass.service";
 import { Reservation } from "../models/reservation";
 import { ReservationService } from "../services/reservation.service";
 import { Router } from "@angular/router";
+import { Car } from "../models/car";
 
 @Component({
   selector: "app-reservation-overview",
@@ -16,6 +17,8 @@ export class ReservationOverviewComponent implements OnInit {
   timePeriod: number;
   totalCost: number;
 
+  cars = [new Car()];
+
   constructor(
     private dataPassService: DataPassService,
     private reservationService: ReservationService,
@@ -25,6 +28,9 @@ export class ReservationOverviewComponent implements OnInit {
   ngOnInit() {
     this.reservation = this.dataPassService.getReservation();
     console.log(this.reservation);
+    console.log(this.reservation.car);
+    this.cars.push(this.reservation.car);
+    console.log(this.cars);
   }
 
   calculateTotalCost(reservation: Reservation): string {

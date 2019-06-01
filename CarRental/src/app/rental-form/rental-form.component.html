@@ -1,35 +1,40 @@
-<div class="container">
+<div
+  class="container"
+  style="margin-top: 10px; margin-right:10px; margin-left: 100px"
+>
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-3" style="margin-top: 20px; ">
       <form (ngSubmit)="onCheckAvailableCars()" #f="ngForm">
         <div id="reservationData">
           <div *ngIf="!updated" class="form-group">
-            <label for="clientLastName">Last Name</label>
+            <label class="text-secondary" for="clientLastName">Last Name</label>
             <input
               type="text"
               id="clientLastName"
-              class="form-control"
+              class="form-control text-secondary"
               ngModel
               name="clientLastName"
             />
           </div>
           <div *ngIf="!updated" class="form-group">
-            <label for="clientAge">Age</label>
+            <label class="text-secondary" for="clientAge">Age</label>
             <input
               type="number"
               id="clientAge"
-              class="form-control"
+              class="form-control text-secondary"
               ngModel
               name="clientAge"
             />
           </div>
           <div class="form-group">
-            <label for="pickUpLocation">Pick Up Location</label>
+            <label class="text-secondary" for="pickUpLocation"
+              >Pick Up Location</label
+            >
             <input
               type="text"
               list="locations"
               id="pickUpLocation"
-              class="form-control"
+              class="form-control text-secondary"
               ngModel
               name="pickUpLocation"
               required
@@ -41,37 +46,41 @@
               id="defaultReturnLocation"
               [(ngModel)]="defaultReturnLocation"
               name="defaultReturnLocation"
-            />Return to same location (Uncheck for different location)
+            /><label class="text-secondary" for="defaultReturnLocation"
+              >Return to same location</label
+            >
           </div>
           <div *ngIf="!defaultReturnLocation" class="form-group">
-            <label for="returnLocation">Return Location</label>
+            <label class="text-secondary" for="returnLocation"
+              >Return Location</label
+            >
             <input
               type="text"
               selected="Port Łódź"
               list="locations"
               id="returnLocation"
-              class="form-control"
+              class="form-control text-secondary"
               ngModel
               name="returnLocation"
               required
             />
           </div>
           <div class="form-group">
-            <label for="pickUpDate">Pick Up Date</label>
+            <label class="text-secondary" for="pickUpDate">Pick Up Date</label>
             <input
               type="datetime-local"
               id="pickUpDate"
-              class="form-control"
+              class="form-control text-secondary"
               ngModel
               name="pickUpDate"
             />
           </div>
           <div class="form-group">
-            <label for="returnDate">Return Date</label>
+            <label class="text-secondary" for="returnDate">Return Date</label>
             <input
               type="datetime-local"
               id="returnDate"
-              class="form-control"
+              class="form-control text-secondary"
               ngModel
               name="returnDate"
             />
@@ -86,7 +95,7 @@
       </form>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-9">
       <app-available-cars [reservation]="reservation"></app-available-cars>
     </div>
   </div>
