@@ -36,16 +36,6 @@ export class RentalFormComponent implements OnInit {
     this.updated = this.dataPassService.getUpdated();
   }
 
-  // onChecked() {
-  //   if (this.defaultReturnLocation === false) {
-  //     this.defaultReturnLocation = true;
-  //     console.log(this.defaultReturnLocation);
-  //   } else {
-  //     this.defaultReturnLocation = false;
-  //     console.log(this.defaultReturnLocation);
-  //   }
-  // }
-
   onCheckAvailableCars() {
     if (!this.updated) {
       if (!this.defaultReturnLocation) {

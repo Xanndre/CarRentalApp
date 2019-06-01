@@ -14,8 +14,8 @@ import { ReservationOverviewComponent } from "./reservation-overview/reservation
 
 const appRoutes: Routes = [
   { path: "", component: HomePageComponent },
-  { path: "rentalForm", component: RentalFormComponent },
-  { path: "checkForm", component: CheckFormComponent },
+  { path: "rent", component: RentalFormComponent },
+  { path: "check", component: CheckFormComponent },
   {
     path: "overview",
     component: ReservationOverviewComponent,

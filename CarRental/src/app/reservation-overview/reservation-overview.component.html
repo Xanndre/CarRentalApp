@@ -1,5 +1,7 @@
+<p>Your current reservation:</p>
+<p>ID: + {{ reservation.id }}</p>
 <p>
-  {{ reservation.id }}
+  {{ calculateTotalCost(reservation) }}
 </p>
 <button class=" btn btn-secondary btn-lg" (click)="onUpdated()">
   Update
@@ -8,5 +10,4 @@
   Delete
 </button>
 
-<!-- <app-rental-form></app-rental-form> -->
 <router-outlet></router-outlet>
