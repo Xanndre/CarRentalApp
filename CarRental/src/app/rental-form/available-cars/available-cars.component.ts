@@ -37,8 +37,6 @@ export class AvailableCarsComponent implements OnInit {
   ngOnChanges() {
     if (this.dataPassService.getUpdated()) {
       this.reservation.id = this.dataPassService.getUpdatedReservation().id;
-      console.log(this.dataPassService.getUpdatedReservation().id);
-      console.log(this.reservation.id);
       this.carService
         .checkUpdatedAvailableCars(
           this.reservation.pickUpDate,
@@ -47,9 +45,9 @@ export class AvailableCarsComponent implements OnInit {
         )
         .subscribe((res: Car[]) => {
           this.availableCars = res;
-          console.log(this.availableCars);
         });
     } else {
+      console.log(this.reservation);
       this.carService
         .checkAvailableCars(
           this.reservation.pickUpDate,
@@ -57,7 +55,6 @@ export class AvailableCarsComponent implements OnInit {
         )
         .subscribe((res: Car[]) => {
           this.availableCars = res;
-          //console.log(this.availableCars);
         });
     }
   }

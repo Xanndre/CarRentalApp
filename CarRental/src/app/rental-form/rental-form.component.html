@@ -27,20 +27,33 @@
             <label for="pickUpLocation">Pick Up Location</label>
             <input
               type="text"
+              list="locations"
               id="pickUpLocation"
               class="form-control"
               ngModel
               name="pickUpLocation"
+              required
             />
           </div>
-          <div class="form-group">
+          <div>
+            <input
+              type="checkbox"
+              id="defaultReturnLocation"
+              [(ngModel)]="defaultReturnLocation"
+              name="defaultReturnLocation"
+            />Return to same location (Uncheck for different location)
+          </div>
+          <div *ngIf="!defaultReturnLocation" class="form-group">
             <label for="returnLocation">Return Location</label>
             <input
               type="text"
+              selected="Port Łódź"
+              list="locations"
               id="returnLocation"
               class="form-control"
               ngModel
               name="returnLocation"
+              required
             />
           </div>
           <div class="form-group">
@@ -78,3 +91,17 @@
     </div>
   </div>
 </div>
+
+<datalist id="locations">
+  <option>Dw. Łódź Kaliska</option>
+  <option>Manufaktura</option>
+  <option>Łódź Chojny</option>
+  <option>Dw. Łódź Fabryczna</option>
+  <option>Kościuszki</option>
+  <option>Retkinia</option>
+  <option>Port Łódź</option>
+  <option>Radogoszcz Zachód</option>
+  <option>Piotrkowska Centrum</option>
+  <option>Plac Dąbrowskiego</option>
+  <option>Teofilów</option>
+</datalist>

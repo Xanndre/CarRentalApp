@@ -13,6 +13,7 @@ export class RentalFormComponent implements OnInit {
   @ViewChild("f") rentalForm: NgForm;
 
   updated = false;
+  defaultReturnLocation = true;
 
   reservation = {
     id: 0,
@@ -35,31 +36,69 @@ export class RentalFormComponent implements OnInit {
     this.updated = this.dataPassService.getUpdated();
   }
 
+  // onChecked() {
+  //   if (this.defaultReturnLocation === false) {
+  //     this.defaultReturnLocation = true;
+  //     console.log(this.defaultReturnLocation);
+  //   } else {
+  //     this.defaultReturnLocation = false;
+  //     console.log(this.defaultReturnLocation);
+  //   }
+  // }
+
   onCheckAvailableCars() {
     if (!this.updated) {
-      this.reservation = {
-        clientAge: this.rentalForm.value.clientAge,
-        clientLastName: this.rentalForm.value.clientLastName,
-        pickUpLocation: this.rentalForm.value.pickUpLocation,
-        returnLocation: this.rentalForm.value.returnLocation,
-        id: 0,
-        carId: 0,
-        car: new Car(),
-        pickUpDate: new Date(this.rentalForm.value.pickUpDate),
-        returnDate: new Date(this.rentalForm.value.returnDate)
-      };
+      if (!this.defaultReturnLocation) {
+        this.reservation = {
+          clientAge: this.rentalForm.value.clientAge,
+          clientLastName: this.rentalForm.value.clientLastName,
+          pickUpLocation: this.rentalForm.value.pickUpLocation,
+          returnLocation: this.rentalForm.value.returnLocation,
+          id: 0,
+          carId: 0,
+          car: new Car(),
+          pickUpDate: new Date(this.rentalForm.value.pickUpDate),
+          returnDate: new Date(this.rentalForm.value.returnDate)
+        };
+      } else {
+        this.reservation = {
+          clientAge: this.rentalForm.value.clientAge,
+          clientLastName: this.rentalForm.value.clientLastName,
+          pickUpLocation: this.rentalForm.value.pickUpLocation,
+          returnLocation: this.rentalForm.value.pickUpLocation,
+          id: 0,
+          carId: 0,
+          car: new Car(),
+          pickUpDate: new Date(this.rentalForm.value.pickUpDate),
+          returnDate: new Date(this.rentalForm.value.returnDate)
+        };
+      }
     } else {
-      this.reservation = {
-        clientAge: 0,
-        clientLastName: "",
-        pickUpLocation: this.rentalForm.value.pickUpLocation,
-        returnLocation: this.rentalForm.value.returnLocation,
-        id: 0,
-        carId: 0,
-        car: new Car(),
-        pickUpDate: new Date(this.rentalForm.value.pickUpDate),
-        returnDate: new Date(this.rentalForm.value.returnDate)
-      };
+      if (!this.defaultReturnLocation) {
+        this.reservation = {
+          clientAge: 0,
+          clientLastName: "",
+          pickUpLocation: this.rentalForm.value.pickUpLocation,
+          returnLocation: this.rentalForm.value.returnLocation,
+          id: 0,
+          carId: 0,
+          car: new Car(),
+          pickUpDate: new Date(this.rentalForm.value.pickUpDate),
+          returnDate: new Date(this.rentalForm.value.returnDate)
+        };
+      } else {
+        this.reservation = {
+          clientAge: 0,
+          clientLastName: "",
+          pickUpLocation: this.rentalForm.value.pickUpLocation,
+          returnLocation: this.rentalForm.value.pickUpLocation,
+          id: 0,
+          carId: 0,
+          car: new Car(),
+          pickUpDate: new Date(this.rentalForm.value.pickUpDate),
+          returnDate: new Date(this.rentalForm.value.returnDate)
+        };
+      }
     }
   }
 }
