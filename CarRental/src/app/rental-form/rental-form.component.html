@@ -56,7 +56,14 @@
               ngModel
               name="pickUpLocation"
               required
+              pattern="[Dw. Łódź Kaliska|Manufaktura|Łódź Chojny|Dw. Łódź Fabryczna|Kościuszki|Retkinia|Port Łódź|Radogoszcz Zachód|Piotrkowska Centrum|Plac Dąbrowskiego|Teofilów]*"
+              #pickUpLocation="ngModel"
             />
+            <span
+              class="help-block text-secondary"
+              *ngIf="!pickUpLocation.valid && pickUpLocation.touched"
+              >Location must be chosen from the list!</span
+            >
           </div>
           <div>
             <input
@@ -81,7 +88,14 @@
               ngModel
               name="returnLocation"
               required
+              pattern="[Dw. Łódź Kaliska|Manufaktura|Łódź Chojny|Dw. Łódź Fabryczna|Kościuszki|Retkinia|Port Łódź|Radogoszcz Zachód|Piotrkowska Centrum|Plac Dąbrowskiego|Teofilów]*"
+              #returnLocation="ngModel"
             />
+            <span
+              class="help-block text-secondary"
+              *ngIf="!returnLocation.valid && returnLocation.touched"
+              >Location must be chosen from the list!</span
+            >
           </div>
           <div class="form-group">
             <label class="text-secondary" for="pickUpDate">Pick Up Date</label>
