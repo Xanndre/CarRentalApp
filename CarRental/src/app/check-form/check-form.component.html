@@ -12,7 +12,14 @@
               class="form-control text-secondary"
               ngModel
               name="clientLastName"
+              pattern="[a-zA-Z ]*"
+              #clientLastName="ngModel"
             />
+            <span
+              class="help-block text-secondary"
+              *ngIf="!clientLastName.valid && clientLastName.touched"
+              >Last Name must contain only letters!</span
+            >
           </div>
           <div class="form-group">
             <label class="text-secondary" for="reservationId"
@@ -24,7 +31,14 @@
               class="form-control text-secondary"
               ngModel
               name="reservationId"
+              pattern="[0-9 ]*"
+              #reservationId="ngModel"
             />
+            <span
+              class="help-block text-secondary"
+              *ngIf="!reservationId.valid && reservationId.touched"
+              >Reservation ID must contain only numbers!</span
+            >
           </div>
         </div>
         <div class="text-secondary text-center">
