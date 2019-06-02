@@ -14,6 +14,7 @@ export class RentalFormComponent implements OnInit {
 
   updated = false;
   defaultReturnLocation = true;
+  date = new Date();
 
   reservation = {
     id: 0,
@@ -34,6 +35,7 @@ export class RentalFormComponent implements OnInit {
 
   ngOnInit() {
     this.updated = this.dataPassService.getUpdated();
+    //this.date = this.rentalForm.value.pickUpDate;
   }
 
   onCheckAvailableCars() {

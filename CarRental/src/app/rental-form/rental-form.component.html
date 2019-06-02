@@ -14,7 +14,16 @@
               class="form-control text-secondary"
               ngModel
               name="clientLastName"
+              required
+              minlength="2"
+              pattern="[a-zA-Z ]*"
+              #clientLastName="ngModel"
             />
+            <span
+              class="help-block text-secondary"
+              *ngIf="!clientLastName.valid && clientLastName.touched"
+              >Last Name must contain only letters!</span
+            >
           </div>
           <div *ngIf="!updated" class="form-group">
             <label class="text-secondary" for="clientAge">Age</label>
@@ -24,7 +33,16 @@
               class="form-control text-secondary"
               ngModel
               name="clientAge"
+              required
+              min="18"
+              [min]="18"
+              #clientAge="ngModel"
             />
+            <span
+              class="help-block text-secondary"
+              *ngIf="!clientAge.valid && clientAge.touched"
+              >Age must be over or equal to 18!</span
+            >
           </div>
           <div class="form-group">
             <label class="text-secondary" for="pickUpLocation"
@@ -71,8 +89,9 @@
               type="datetime-local"
               id="pickUpDate"
               class="form-control text-secondary"
-              ngModel
+              [(ngModel)]="date"
               name="pickUpDate"
+              required
             />
           </div>
           <div class="form-group">
@@ -83,12 +102,24 @@
               class="form-control text-secondary"
               ngModel
               name="returnDate"
+              required
+              [minDate]="date"
+              #returnDate="ngModel"
             />
+            <span
+              class="help-block text-secondary"
+              *ngIf="!returnDate.valid && returnDate.touched"
+              >Return date must be later than pick-up date!</span
+            >
           </div>
         </div>
 
         <div class="text-secondary text-center">
-          <button class=" btn btn-secondary btn-lg" type="submit">
+          <button
+            class=" btn btn-secondary btn-lg"
+            type="submit"
+            [disabled]="!f.valid"
+          >
             Check Available Cars
           </button>
         </div>

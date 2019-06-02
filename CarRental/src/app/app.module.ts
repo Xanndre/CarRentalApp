@@ -12,6 +12,7 @@ import { CheckFormComponent } from "./check-form/check-form.component";
 import { AvailableCarsComponent } from "./rental-form/available-cars/available-cars.component";
 import { ReservationOverviewComponent } from "./reservation-overview/reservation-overview.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { CustomFormsModule } from "ng2-validation";
 
 const appRoutes: Routes = [
   { path: "", component: HomePageComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    CustomFormsModule,
     NgbModule.forRoot()
   ],
   providers: [CarService],
