@@ -27,7 +27,6 @@ export class ReservationOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.reservation = this.dataPassService.getReservation();
-    this.cars.push(this.reservation.car);
   }
 
   calculateTotalCost(reservation: Reservation): string {
@@ -50,6 +49,7 @@ export class ReservationOverviewComponent implements OnInit {
       .deleteReservation(this.reservation.id, this.reservation.clientLastName)
       .subscribe(res => {
         this.dataPassService.setReservation(res);
+        this.router.navigateByUrl("/");
       });
   }
 

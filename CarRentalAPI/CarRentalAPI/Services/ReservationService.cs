@@ -47,7 +47,9 @@ namespace CarRentalAPI.Services
             await _carDbContext.SaveChangesAsync();
         }
 
-        public async Task Update(int id, Reservation reservation, string name)
+
+
+        public async Task<Reservation> Update(int id, Reservation reservation, string name)
         {
             Reservation res = await Read(id, name);
             if (res == null)
@@ -63,6 +65,7 @@ namespace CarRentalAPI.Services
             res.CarId = reservation.CarId;
             res.Car = reservation.Car;
             await _carDbContext.SaveChangesAsync();
+            return res;
 
         }
 

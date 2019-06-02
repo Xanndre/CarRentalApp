@@ -70,13 +70,14 @@ namespace CarRentalAPI.Controllers
 
         //PUT: api/Reservation/5
         [HttpPut]
-        public async Task<IActionResult> Put([FromQuery] int id, [FromBody] Reservation reservation, [FromQuery] string name)
+        public async Task<ActionResult<Reservation>> Put([FromQuery] int id, [FromBody] Reservation reservation, [FromQuery] string name)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             try
             {
-                await _reservationService.Update(id, reservation, name);
+                Reservation res = await _reservationService.Update(id, reservation, name);
+                return Ok(res);
             }
             catch (ArgumentNullException exception)
             {
@@ -87,7 +88,7 @@ namespace CarRentalAPI.Controllers
                 return BadRequest(exception.Message);
             }
 
-            return Ok();
+            
         }
 
         // DELETE: api/ApiWithActions/5
@@ -108,6 +109,6 @@ namespace CarRentalAPI.Controllers
             return Ok();
         }
 
-        
+
     }
 }

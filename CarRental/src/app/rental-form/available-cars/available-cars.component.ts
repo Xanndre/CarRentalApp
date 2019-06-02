@@ -70,7 +70,7 @@ export class AvailableCarsComponent implements OnInit {
         )
         .subscribe(res => {
           this.dataPassService.setReservation(res);
-          this.router.navigateByUrl("/overview");
+          this.router.navigateByUrl("/");
         });
     } else {
       this.reservation.carId = carId;
