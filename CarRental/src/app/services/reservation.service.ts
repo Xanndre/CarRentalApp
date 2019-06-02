@@ -3,7 +3,6 @@ import { Reservation } from "../models/reservation";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/Operators";
-import { DataPassService } from "./data-pass.service";
 
 @Injectable({
   providedIn: "root"

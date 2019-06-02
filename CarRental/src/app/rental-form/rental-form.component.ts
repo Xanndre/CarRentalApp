@@ -28,14 +28,10 @@ export class RentalFormComponent implements OnInit {
     car: new Car()
   };
 
-  constructor(
-    private router: Router,
-    private dataPassService: DataPassService
-  ) {}
+  constructor(private dataPassService: DataPassService) {}
 
   ngOnInit() {
     this.updated = this.dataPassService.getUpdated();
-    //this.date = this.rentalForm.value.pickUpDate;
   }
 
   onCheckAvailableCars() {

@@ -3,13 +3,10 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { map } from "rxjs/Operators";
 import { Observable } from "rxjs";
 import { Car } from "../models/car";
-import { EventEmitter } from "@angular/core";
 @Injectable({
   providedIn: "root"
 })
 export class CarService {
-  //checkedAvailableCars = new EventEmitter<Date[]>();
-
   constructor(private client: HttpClient) {}
 
   getAllCars(): Observable<Car[]> {

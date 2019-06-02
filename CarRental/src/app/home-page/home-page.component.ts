@@ -7,8 +7,6 @@ import { DataPassService } from "../services/data-pass.service";
   styleUrls: ["./home-page.component.css"]
 })
 export class HomePageComponent implements OnInit {
-  //updated = false;
-
   constructor(private dataPassService: DataPassService) {}
 
   ngOnInit() {

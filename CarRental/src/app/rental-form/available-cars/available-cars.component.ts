@@ -47,7 +47,6 @@ export class AvailableCarsComponent implements OnInit {
           this.availableCars = res;
         });
     } else {
-      console.log(this.reservation);
       this.carService
         .checkAvailableCars(
           this.reservation.pickUpDate,

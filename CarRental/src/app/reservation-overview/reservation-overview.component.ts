@@ -27,10 +27,7 @@ export class ReservationOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.reservation = this.dataPassService.getReservation();
-    console.log(this.reservation);
-    console.log(this.reservation.car);
     this.cars.push(this.reservation.car);
-    console.log(this.cars);
   }
 
   calculateTotalCost(reservation: Reservation): string {
@@ -40,8 +37,6 @@ export class ReservationOverviewComponent implements OnInit {
       1000 /
       60 /
       60;
-    console.log("Tyle godzin: " + this.timePeriod);
-    console.log("Koszt: " + reservation.car.cost);
     if (reservation.clientAge > 25) {
       this.totalCost = 0.95 * reservation.car.cost * this.timePeriod;
     } else {
